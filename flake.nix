@@ -79,8 +79,8 @@
       let
         org = "pythoneda-sandbox-artifact";
         repo = "python";
-        version = "0.0.77";
-        sha256 = "0qa59c60jzzb5pc24b9hrkr4waba7di0p29f9ahn09mghal5ccvv";
+        version = "0.0.78";
+        sha256 = "0lqjg6qp4289ml0wws769mp093l11179gc4gczsfgww4krh5gb5c";
         pname = "${org}-${repo}";
         pkgs = import nixos { inherit system; };
         description = "Artifact space of pythoneda-sandbox/python";
