@@ -20,10 +20,10 @@
   description = "Nix flake pythoneda-sandbox-artifact/python";
   inputs = rec {
     flake-utils.url = "github:numtide/flake-utils/v1.0.0";
-    nixos.url = "github:NixOS/nixpkgs/24.05";
+    nixpkgs.url = "github:NixOS/nixpkgs/24.05";
     pythoneda-shared-artifact-shared = {
       inputs.flake-utils.follows = "flake-utils";
-      inputs.nixos.follows = "nixos";
+      inputs.nixpkgs.follows = "nixpkgs";
       inputs.pythoneda-shared-git-shared.follows =
         "pythoneda-shared-git-shared";
       inputs.pythoneda-shared-nix-flake-shared.follows =
@@ -32,39 +32,39 @@
         "pythoneda-shared-pythonlang-banner";
       inputs.pythoneda-shared-pythonlang-domain.follows =
         "pythoneda-shared-pythonlang-domain";
-      url = "github:pythoneda-shared-artifact-def/shared/0.0.79";
+      url = "github:pythoneda-shared-artifact-def/shared/0.0.80";
     };
     pythoneda-shared-git-shared = {
       inputs.flake-utils.follows = "flake-utils";
-      inputs.nixos.follows = "nixos";
+      inputs.nixpkgs.follows = "nixpkgs";
       inputs.pythoneda-shared-pythonlang-banner.follows =
         "pythoneda-shared-pythonlang-banner";
       inputs.pythoneda-shared-pythonlang-domain.follows =
         "pythoneda-shared-pythonlang-domain";
-      url = "github:pythoneda-shared-git-def/shared/0.0.71";
+      url = "github:pythoneda-shared-git-def/shared/0.0.72";
     };
     pythoneda-shared-nix-flake-shared = {
       inputs.flake-utils.follows = "flake-utils";
-      inputs.nixos.follows = "nixos";
+      inputs.nixpkgs.follows = "nixpkgs";
       inputs.pythoneda-shared-git-shared.follows =
         "pythoneda-shared-git-shared";
       inputs.pythoneda-shared-pythonlang-banner.follows =
         "pythoneda-shared-pythonlang-banner";
       inputs.pythoneda-shared-pythonlang-domain.follows =
         "pythoneda-shared-pythonlang-domain";
-      url = "github:pythoneda-shared-nix-flake-def/shared/0.0.77";
+      url = "github:pythoneda-shared-nix-flake-def/shared/0.0.78";
     };
     pythoneda-shared-pythonlang-banner = {
       inputs.flake-utils.follows = "flake-utils";
-      inputs.nixos.follows = "nixos";
-      url = "github:pythoneda-shared-pythonlang-def/banner/0.0.71";
+      inputs.nixpkgs.follows = "nixpkgs";
+      url = "github:pythoneda-shared-pythonlang-def/banner/0.0.72";
     };
     pythoneda-shared-pythonlang-domain = {
       inputs.flake-utils.follows = "flake-utils";
-      inputs.nixos.follows = "nixos";
+      inputs.nixpkgs.follows = "nixpkgs";
       inputs.pythoneda-shared-pythonlang-banner.follows =
         "pythoneda-shared-pythonlang-banner";
-      url = "github:pythoneda-shared-pythonlang-def/domain/0.0.93";
+      url = "github:pythoneda-shared-pythonlang-def/domain/0.0.94";
     };
   };
   outputs = inputs:
@@ -82,7 +82,7 @@
         version = "0.0.85";
         sha256 = "1lxh984gkq8dhavv5k3486iah8i3s6a7j43p43gjx1bjch0hpp7r";
         pname = "${org}-${repo}";
-        pkgs = import nixos { inherit system; };
+        pkgs = import nixpkgs { inherit system; };
         description = "Artifact space of pythoneda-sandbox/python";
         license = pkgs.lib.licenses.gpl3;
         homepage = "https://github.com/pythoneda-sandbox-def/python";
@@ -90,9 +90,9 @@
         archRole = "S";
         space = "A";
         layer = "D";
-        nixosVersion = builtins.readFile "${nixos}/.version";
+        nixpkgsVersion = builtins.readFile "${nixpkgs}/.version";
         nixpkgsRelease =
-          builtins.replaceStrings [ "\n" ] [ "" ] "nixos-${nixosVersion}";
+          builtins.replaceStrings [ "\n" ] [ "" ] "nixpkgs-${nixpkgsVersion}";
         shared = import "${pythoneda-shared-pythonlang-banner}/nix/shared.nix";
         pythoneda-sandbox-artifact-python-for = { python
           , pythoneda-shared-artifact-shared, pythoneda-shared-nix-flake-shared
